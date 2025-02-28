@@ -1,0 +1,19 @@
+# Splunk Queries for Windows Security Log Analysis
+
+## 1️⃣ Find Failed Logins (Event ID 4625 - Failed Login Attempt)
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4625
+
+## 2️⃣ Find Successful Logins (Event ID 4624 - Successful Login Attempt)
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4624
+
+## 3️⃣ Find Suspicious Admin Privilege Escalations (Event ID 4672 - Privilege Escalation)
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4672
+
+## 4️⃣ Find the Top 5 Users with Most Failed Logins
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4625 | stats count by "Account Name" | sort -count | head 5
+
+## 5️⃣ Find the Top 5 IP Addresses with Most Failed Logins
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4625 | stats count by "Source IP Address" | sort -count | head 5
+
+## 6️⃣ Find Brute-Force Attempts (More than 50 Failed Logins from Same IP)
+index=* source="windows security logs.csv" host="securitylogs" sourcetype="csv" "Event ID"=4625 | stats count by "Source IP Address" | where count > 50
