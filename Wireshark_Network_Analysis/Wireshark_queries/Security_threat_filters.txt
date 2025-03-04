@@ -1,0 +1,17 @@
+# 🔍 Detect Brute-force Login Attempts
+tcp.flags.reset == 1
+
+# 🔍 Detect Unencrypted HTTP Login Credentials
+http contains "login"
+
+# 🔍 Detect Suspicious DNS Requests (DNS Spoofing)
+dns.qry.name == "google.com"
+
+# 🔍 Detect ARP Spoofing (Man-in-the-Middle Attack)
+arp.duplicate-address-detected == 1
+
+# 🔍 Find Traffic from a Suspicious IP Address
+ip.addr == 192.168.1.100
+
+# 🔍 Find Packets Sent to a Specific Port (Example: SSH)
+tcp.port == 22
