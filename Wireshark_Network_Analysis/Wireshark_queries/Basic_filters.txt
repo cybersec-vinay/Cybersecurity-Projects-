@@ -1,0 +1,14 @@
+# Display Only HTTP Traffic
+http
+
+# Display Only HTTPS Traffic
+tls
+
+# Display Only DNS Queries
+dns
+
+# Display Only TCP Packets
+tcp
+
+# Display Only UDP Packets
+udp
