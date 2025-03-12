@@ -34,7 +34,7 @@
 ---
 
 ### 🚨 3. Possible ARP Spoofing Attack  
-- **Attacker MAC Address:** `00:11:22:33:44:55`  
+- **Attacker MAC Address:** E8-65-38-E0-62-9F  
 - **Fake Gateway IP:** `192.168.1.1`  
 - **Impact:** Attacker can redirect user traffic & intercept sensitive data.  
 
