@@ -49,6 +49,5 @@
 ✔ Next steps: Patch **ARP spoofing risks** and monitor network traffic.  
 
 ## 📂 4. Attachments  
-📌 `network_capture.pcapng` → Wireshark capture file  
-📌 Screenshots of threat analysis  
+📌 `network_capture.pcapng` → Wireshark capture file 
 
