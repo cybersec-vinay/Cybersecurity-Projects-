@@ -18,8 +18,7 @@ This project analyzes **network traffic using Wireshark** to detect **security t
 
 ## 📂 Folder Structure  
 - `Network_Security_Report.md` → Detailed incident report  
-- `filters/` → Wireshark filter queries  
-- `screenshots/` → Images of network threats  
+- `filters/` → Wireshark filter queries   
 - `network_capture.pcapng` → Captured traffic file  
 
 ## 📖 Reference Materials  
