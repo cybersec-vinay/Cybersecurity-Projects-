@@ -4,7 +4,7 @@
 
 📅 Date: June 2, 2025  
 🖥️ Target System: Ubuntu Server with SSH Enabled  
-🧑 Targeted Username: vinay  
+🧑 Targeted Username: Siem Server
 🌐 Source IP (Attacker): 192.168.1.5 (Kali Linux)
 
 ---
@@ -34,14 +34,6 @@ index=* sourcetype=linux_secure "Failed password"
 
 ---
 
-📈 Timeline:
-
-- 08:00 AM – Kali VM booted and Hydra launched
-- 08:05 AM – Ubuntu SSH server showed repeated login failures
-- 08:10 AM – Splunk ingested logs and query detected brute-force pattern
-- 08:15 AM – Report generated and documented
-
----
 
 🧾 Recommendation:
 
