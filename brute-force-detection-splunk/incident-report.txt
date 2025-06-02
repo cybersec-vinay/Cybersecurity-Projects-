@@ -1,0 +1,59 @@
+==============================
+🚨 Incident Report – Brute-Force SSH Attack
+==============================
+
+📅 Date: June 2, 2025  
+🖥️ Target System: Ubuntu Server with SSH Enabled  
+🧑 Targeted Username: vinay  
+🌐 Source IP (Attacker): 192.168.1.5 (Kali Linux)
+
+---
+
+🛠️ Summary:
+
+A brute-force SSH attack was simulated using Hydra from a Kali Linux machine targeting an Ubuntu server. The attacker attempted thousands of SSH logins using a common password list (`rockyou.txt`). This resulted in 3570+ failed login attempts recorded in the server's `/var/log/auth.log`.
+
+The logs were successfully ingested into Splunk, where a custom SPL query was used to detect the brute-force pattern based on repeated failed login attempts from a single IP.
+
+---
+
+🔍 Detection:
+
+**Log Source**: `/var/log/auth.log`  
+**Sourcetype**: `linux_secure`  
+**SIEM Tool**: Splunk  
+**Detection Query Used**:
+
+index=* sourcetype=linux_secure "Failed password"
+| stats count by user, src, host
+| where count > 5
+
+
+**Events Detected**: 3570  
+**Pattern Observed**: Multiple failed SSH logins from a single IP within a short time window targeting a specific user (`vinay`)
+
+---
+
+📈 Timeline:
+
+- 08:00 AM – Kali VM booted and Hydra launched
+- 08:05 AM – Ubuntu SSH server showed repeated login failures
+- 08:10 AM – Splunk ingested logs and query detected brute-force pattern
+- 08:15 AM – Report generated and documented
+
+---
+
+🧾 Recommendation:
+
+1. **Block attacker IP** at the firewall (e.g., `iptables` or UFW)
+2. **Implement account lockout policy** after 5 failed attempts
+3. **Create a real-time Splunk alert** for repeated login failures
+4. Rotate user credentials and ensure SSH keys are used instead of passwords
+
+---
+
+🔐 Severity Rating: Medium  
+🚩 Status: Contained (Lab Simulation)  
+✍️ Reported By: Vinay (SOC Analyst – Lab Environment)
+
+==============================
