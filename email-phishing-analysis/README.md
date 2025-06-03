@@ -1,4 +1,4 @@
-# 📧 Phishing Email Analysis – IOC Extraction and Validation (Day 5 Project)
+# 📧 Phishing Email Analysis – IOC Extraction and Validation 
 
 This project simulates the analysis of a phishing email received by a target. The attacker used a spoofed domain that mimics Microsoft and attempted to trick the user into clicking a fake password reset link. This exercise is part of my 30-day SOC Analyst learning challenge.
 
