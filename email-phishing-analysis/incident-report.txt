@@ -1,0 +1,31 @@
+==============================
+🚨 Incident Report – Email Phishing Attempt
+==============================
+
+📅 Date: June 2, 2025  
+🎯 Target: victim@example.com  
+📬 Sender: "Microsoft Support" <support@micros0ft-support.com>  
+📨 Subject: Important Security Update  
+📥 Message-ID: f28r8p3b2m3@example.com  
+🌐 Link: http://micros0ft-reset-password.com/verify  
+🌎 Sender IP: 185.203.119.8 (Redcluster, Bulgaria)
+
+---
+
+🔍 IOC Validation:
+
+- AbuseIPDB: Not flagged, but hosted on risky data center (Redcluster.net)
+- VirusTotal: 0 detections, but clearly a spoofed Microsoft domain
+
+---
+
+🛡 Recommended Action:
+
+- Block sender domain and IP
+- Alert end users on phishing risks with brand spoofing
+- Add to SOC threat intel watchlist
+
+🛑 Threat Level: Medium  
+✍️ Reported by: Vinay (SOC Analyst – Lab Simulation)
+
+==============================
