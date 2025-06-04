@@ -19,7 +19,7 @@ Correlate these stages:
 ### 🔹 1. SSH Brute-force (Failed)
 
 ssh testuser@127.0.0.1
-# Enter wrong password 5 times
+# Enter wrong password 4 times
 
 🔹 2. SSH Success
 
@@ -66,3 +66,36 @@ Successful login	/var/log/auth.log
 wget command	.bash_history
 
 The SPL successfully tied together all three elements, simulating a detection that would trigger in a real-world SOC for lateral movement or data staging activity.
+
+# 📄 Incident Report (Summary)
+
+Incident Type: SSH Brute Force + wget Execution
+
+Date: June 4, 2025
+
+Host: siem-server
+
+User: testuser
+
+Indicators:
+
+- 4x Failed SSH logins
+
+- 3x Successful login
+
+- wget used post-authentication
+
+Log Sources: auth.log, .bash_history
+
+Status: Detected via Splunk correlation
+
+# 💡 Lessons Learned
+Not all suspicious behavior appears in syslog — .bash_history matters
+
+Real attacks often span multiple logs
+
+CLI-based simulation is faster and more efficient than GUI in many cases
+
+# 🧑‍💻 Project Author
+Vinay Raghavendra
+
