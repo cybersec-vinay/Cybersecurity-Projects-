@@ -1,0 +1,19 @@
+SOC Use Case: Brute-Force + Suspicious Command Detection
+
+Today I simulated a real-world attack chain:
+
+✅ 3000+ Failed SSH login attempts  
+✅ 1x Successful login  
+✅ `wget` used to download a fake script post-auth
+
+I correlated logs across `/var/log/auth.log` and `.bash_history` to build a detection logic in Splunk. The key was not just detecting brute-force — but also what happened after.
+
+📌 Built & tested a complete SPL that links pre-auth failures to post-auth behavior.
+
+🔍 Detection outcome:
+> "This user failed login 3000+ times, got in, then pulled something with wget."
+
+📂 Full Repo:  
+🔗 [github.com/cybersec-vinay/Cybersecurity-Projects-/tree/main/suspicious-ssh-wget-correlation](#)
+
+#CyberSecurity #SOC #Splunk #Linux #SIEM #LogCorrelation #DetectionEngineering #30DayChallenge #SOCAnalyst
