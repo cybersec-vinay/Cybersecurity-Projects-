@@ -1,0 +1,11 @@
+============================
+🚨 Splunk Alert Summary – T1059
+============================
+Alert Name: Curl Pipe to Bash Detected
+Technique: T1059.001 – Command and Scripting Interpreter: Bash
+Triggered by: Entry in .bash_history matching 'curl | bash'
+Action: Logs event + displays in triggered alerts
+Schedule: Every 15 minutes
+Threshold: If Number of Results > 0
+Index: main
+============================
