@@ -19,7 +19,7 @@ We correlate logs where:
   
 - Then runs `wget` or `curl`
 
-### ✅ SPL Query
+### ✅ SPL 
 
 
 index=* (sourcetype=linux_secure OR sourcetype=bash_history)
@@ -61,31 +61,4 @@ Automating detection rules in real SOC environments
 
  
 ---
-
-## 📄 `alert-summary.txt`
-
-```txt
-==============================
-🔔 Splunk Alert – Suspicious SSH + wget Activity
-==============================
-
-📌 Alert Name:
-SSH Brute Force Followed by Suspicious Command
-
-🧪 Behavior Simulated:
-- 3000+ Failed SSH logins
-- One successful login
-- wget or curl used post-login
-
-🎯 SPL Logic:
-Correlates `/var/log/auth.log` and `.bash_history` using unified fields
-
-📅 Trigger Condition:
-Results > 0 in last 15 minutes
-
-💡 Use Case:
-Detects brute-force followed by payload download — common in early-stage compromises
-
-🔧 Status: ✅ Working & Tested
-==============================
 
