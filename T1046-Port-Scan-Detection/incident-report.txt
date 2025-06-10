@@ -1,0 +1,23 @@
+==========================
+🛡️ INCIDENT REPORT – T1046
+==========================
+
+📅 Date: June 10, 2025  
+🧑‍💻 Attacker IP: 192.168.177.130  
+📍 Host: Ubuntu SIEM Server  
+📘 Technique: T1046 – Network Service Scanning
+
+---
+
+🔍 Detection:
+- Repeated connection attempts from attacker IP across 10+ ports
+- Captured via `/var/log/ufw.log` (UFW firewall)
+- Forwarded to Splunk and detected via scheduled SPL
+
+---
+
+✅ Splunk alert created
+✅ Verified UFW logging
+✅ Ready for SOC monitoring
+
+==========================
