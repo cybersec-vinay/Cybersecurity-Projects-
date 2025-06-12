@@ -1,0 +1,25 @@
+=============================
+🛡️ INCIDENT REPORT – MITRE T1548
+=============================
+
+📅 Date: June 11, 2025  
+👤 User: testuser  
+📍 Host: siem-server  
+📘 Technique: T1548.003 – Unauthorized Use of Sudo
+
+---
+
+🧪 Summary:
+- Multiple unauthorized `sudo` attempts were made by `testuser`
+- Commands like `sudo ls`, `sudo whoami`, `sudo cat /etc/shadow` were used
+- System denied escalation and logged each event to `/var/log/auth.log`
+
+---
+
+🔍 Detection:
+- Ingested logs via Splunk Forwarder
+- Alert created based on "user NOT in sudoers" log pattern
+- SPL used to parse and label events
+
+✅ Alert has been tested and verified
+=============================
