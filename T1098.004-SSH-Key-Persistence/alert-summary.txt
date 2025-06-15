@@ -1,0 +1,14 @@
+Alert Name: SSH Key Persistence Detection
+Source: Splunk
+Trigger Conditions:
+  - Event contains "authorized_keys" OR "ssh-rsa"
+  - Followed by a successful "Accepted publickey" login from new IP
+
+Action Taken:
+- SOC team alerted
+- Incident ticket generated
+- Correlation timeline reviewed
+
+Splunk Query Used:
+(index=* "Accepted publickey" OR authorized_keys OR ".ssh" OR "ssh-rsa") ...
+
