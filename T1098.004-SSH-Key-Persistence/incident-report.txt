@@ -1,0 +1,17 @@
+Title: SSH Key-Based Persistence Detected on Ubuntu Server
+
+Date: 2025-06-12
+Detected By: Splunk SIEM
+
+Summary:
+A new public SSH key was injected into the authorized_keys file of user 'lief'. Subsequently, login via key-based auth was observed from an unknown external IP.
+
+Indicators:
+- File modified: ~/.ssh/authorized_keys
+- SSH login from unknown IP using publickey
+- Sequence of events aligns with MITRE T1098.004 and T1078
+
+Response Actions:
+- Key removed
+- IP blocked via UFW
+- User password rotated
