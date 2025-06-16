@@ -1,0 +1,24 @@
+Title: Suspicious Data Archiving Detected in /tmp (T1005 - Data Staged for Exfiltration)
+
+Date: [Add Date]
+Host: ubuntu-lab01
+User: testuser
+
+Summary:
+A suspicious ZIP archive (`data_loot.zip`) was created in the `/tmp/` directory. Investigation revealed that `.conf`, `.bash_history`, and `.ssh` files were copied from system directories and compressed for likely exfiltration.
+
+Indicators:
+- Command-line access to sensitive files
+- Use of zip command in bash history
+- ZIP file creation logged via syslog
+- Logger-based messages used to simulate attacker behavior
+
+Detection Timeline:
+- `~/.bash_history` accessed at 11:00:23
+- `.conf` files copied to `/tmp/exfil` at 11:01:00
+- ZIP created as `data_loot.zip` at 11:01:45
+
+Recommendations:
+- Restrict shell access via SSH keys
+- Monitor `/tmp` for archiving tools usage
+- Enable `auditd` or `Sysmon for Linux` for deep file system logging
