@@ -1,6 +1,6 @@
 Title: Suspicious Data Archiving Detected in /tmp (T1005 - Data Staged for Exfiltration)
 
-Date: [Add Date]
+Date: 16-06-2025
 Host: ubuntu-lab01
 User: testuser
 
