@@ -1,0 +1,18 @@
+Alert: Suspicious Archive Activity in /tmp
+
+Description:
+Monitors for the use of archive tools (`zip`, `tar`) targeting `/tmp/`, especially files containing `.bash_history`, `.conf`, or `.ssh`.
+
+Query:
+index=* "/tmp/" ("data_loot" OR ".zip" OR ".tar")
+
+Trigger:
+If 1 or more events match in a 10-minute span per user.
+
+Severity: High
+Action: Send Email to SOC + Raise notable in dashboard
+
+Next Steps:
+- Review archive file contents
+- Lock or investigate user shell activity
+- Scan for outbound connections (exfil)
