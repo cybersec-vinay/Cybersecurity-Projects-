@@ -1,0 +1,22 @@
+Title: Privilege Escalation Attempt via Sudo and Su
+
+Date: [Fill Date]
+Analyst: Vinay Raghavendra
+Host: ubuntu-lab01
+User: testuser
+
+Summary:
+Suspicious attempts to elevate privileges were detected. The user `testuser` attempted to run commands with `sudo`, accessed `/etc/shadow`, and also attempted to switch users using `su`. Unauthorized sudo attempts and failed su authentications were logged and detected via Splunk.
+
+Indicators:
+- sudo command executed to read sensitive files
+- su - root attempted with failed authentication
+- sudo -l run (elevation capability enumeration)
+
+Recommendations:
+- Enforce least privilege access
+- Disable password-based root login
+- Set up alerting on sudoers violation
+- Monitor for sudo enumeration attempts (auditd or logger)
+
+Status: Contained
