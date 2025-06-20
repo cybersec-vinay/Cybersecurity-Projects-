@@ -1,0 +1,16 @@
+Alert Name: Unauthorized Privilege Escalation Detected
+Type: Real-time Alert
+Severity: High
+
+Trigger Conditions:
+- "user NOT in sudoers" in logs
+- "su:" with "authentication failure" more than 2 times in 5 minutes
+
+Detection Queries:
+1. index=* "user NOT in sudoers"
+2. index=* "su:" "authentication failure"
+
+Response Actions:
+- Alert SOC analyst
+- Review sudo/su history
+- Investigate user privilege escalation intent
