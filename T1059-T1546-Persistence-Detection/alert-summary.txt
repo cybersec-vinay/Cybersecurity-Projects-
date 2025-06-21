@@ -1,0 +1,14 @@
+Alert Name: Persistence Technique Detected (.bashrc or Crontab)
+Type: Scheduled Search Alert
+Severity: High
+
+Trigger:
+- Detection of `.bashrc` with reverse shell signature
+- Cronjob with `@reboot` using suspicious commands
+- Use of `/dev/tcp`, `bash -i`, or logger-simulated persistence messages
+
+Detection Query:
+
+
+index=* ("@reboot" OR "crontab" OR "cron" OR "reverse shell" OR ".bashrc" OR "/dev/tcp" OR "Persistence")
+| table _time, host, user, message
