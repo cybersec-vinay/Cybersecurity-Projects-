@@ -1,0 +1,24 @@
+Title: Persistence Attempt via .bashrc and Crontab
+
+Date: [Insert Date]
+Host: siem-server
+User: lief
+
+Summary:
+Persistence techniques were simulated using reverse shell payloads placed in `.bashrc` and `crontab`. These would initiate a reverse shell connection to a remote host every time the user logs in or the system reboots.
+
+Indicators:
+- `.bashrc` modified with suspicious reverse shell
+- Cronjob with `@reboot` executing reverse shell
+- Logger events indicating payload setup
+
+Detection:
+- Splunk queries detected use of `bash -i`, `@reboot`, and `/dev/tcp`
+- Events were logged under `/var/log/syslog` and `.bash_history`
+
+Recommendation:
+- Monitor `.bashrc`, `.profile`, `/etc/rc.local`, `/etc/cron*` folders
+- Deploy File Integrity Monitoring (FIM) using auditd or Wazuh
+- Alert on creation of cronjobs or shell-based network connections
+
+Status: Simulated - No real impact
