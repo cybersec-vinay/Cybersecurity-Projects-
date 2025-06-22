@@ -1,0 +1,25 @@
+Alert Name: Web Exploitation Attempt Detected (SQLi/LFI/Scanner)
+Severity: High
+Type: Scheduled Search
+
+Trigger:
+Detection of malicious query strings or known scanner user-agents.
+
+Detection Logic:
+- URI query contains `;`, `../../`, `%27 OR %27`
+- User-agent includes sqlmap or nikto
+
+Splunk Query:
+index=* sourcetype="access_combined" (
+    uri_query="*%27*OR*%27*" OR 
+    uri_query="*../../*" OR 
+    uri_query="*;*" OR 
+    useragent="sqlmap*" OR 
+    useragent="nikto*"
+)
+| table _time, clientip, uri_query, useragent
+
+Response:
+- Alert SOC team
+- Correlate with endpoint logs
+- Investigate attack origin
