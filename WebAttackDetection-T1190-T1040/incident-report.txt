@@ -1,0 +1,32 @@
+
+Title: Web Application Exploitation Attempt Detected
+
+Date: [Insert Date]
+Host: siem-server
+Source IP: 192.168.177.1 (attacker/Kali)
+
+Summary:
+Multiple malicious HTTP requests were detected in Apache access logs, indicating attempts to exploit the web server via:
+
+- SQL Injection
+- Command Injection
+- Local File Inclusion
+- Scanner tools (sqlmap, Nikto)
+
+Indicators:
+- Suspicious URI queries (e.g., %27 OR %271%27=1)
+- Special characters like `;`, `../../`
+- Known malicious user-agents (sqlmap/nikto)
+- Spike in requests from a single IP
+
+Mitre Mapping:
+- T1190 – Exploit Public-Facing Application
+- T1040 – Network Sniffing (via payload callback)
+
+Recommendations:
+- Block source IP
+- Enable WAF or ModSecurity on Apache
+- Harden input validation
+- Enable automated alerts on known attack patterns
+
+Status: Simulated for SOC Training – No actual compromise
