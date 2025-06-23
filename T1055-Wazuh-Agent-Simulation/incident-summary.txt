@@ -1,0 +1,14 @@
+Date: 23 June 2025  
+Lab: Wazuh Agent Simulation  
+MITRE Technique: T1055 - Process Injection / Unauthorized Modifications
+
+Actions:
+- Installed wazuh-agent_4.7.5-1
+- Configured ossec.conf with manager IP (unavailable for this lab)
+- Simulated file tampering using echo + sudo tee on /etc/passwd
+- Reverted simulation safely
+- Verified agent status using systemctl
+
+Outcome:
+- No alerts generated due to missing manager
+- Setup is valid; can resume detection if manager is connected later
