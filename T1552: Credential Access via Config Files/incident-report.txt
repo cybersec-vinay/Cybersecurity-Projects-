@@ -1,0 +1,23 @@
+Incident ID: 2025-T1552-CREDCONF
+Date: 2025-06-27
+Technique: T1552 – Unsecured Credentials in Configuration Files
+
+Summary:
+An attacker enumerated sensitive configuration files (e.g., .conf, .env, .cnf) and extracted credentials like root passwords, database credentials, and environment variables. These were compressed and exfiltrated to a mock attacker server using curl.
+
+Indicators:
+- Keyword matches: password=, api_key=, token=
+- Source file: /etc/mysql/debian.cnf
+- Method: curl POST upload to 192.168.177.128
+
+Detections:
+- Splunk query matched on `bash_history` and `syslog`
+- File access and curl usage confirmed
+
+Impact:
+Simulated theft of sensitive credentials — would result in full system or DB compromise in real-world environments.
+
+Status:
+✔ Simulated  
+✔ Detected  
+✔ Documented  
