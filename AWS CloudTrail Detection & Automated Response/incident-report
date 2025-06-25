@@ -1,0 +1,25 @@
+Incident Title: Unauthorized Deletion of CloudTrail Logs
+
+Date:2025-06-29
+Detected By: CloudWatch EventBridge + Logs Insights
+
+Summary:
+The system detected a potential attempt to disable AWS CloudTrail using a DeleteTrail API call. This could be part of an evasion tactic by an insider or attacker to cover their tracks.
+
+Detection Method:
+
+CloudWatch Logs Insight query on CloudTrail logs
+
+EventBridge rule for eventName="DeleteTrail"
+
+Response:
+
+Email alert sent via SNS to Security Team
+
+No deletion was successful (verified)
+
+Mitigation:
+
+CloudTrail write protection enforced
+
+IAM reviewed for suspicious changes
