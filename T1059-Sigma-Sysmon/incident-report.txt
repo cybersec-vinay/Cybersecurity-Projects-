@@ -1,0 +1,38 @@
+Incident Report: Obfuscated PowerShell Execution Detected
+
+Date: 2025-06-28
+Project: Day 24 – Sigma + Sysmon Detection Lab
+MITRE ATT&CK Technique: T1059.001 – PowerShell Execution
+
+Summary:
+A detection rule was created to identify obfuscated PowerShell commands used for command execution. These encoded scripts are commonly seen in attack chains including phishing payloads, persistence, and lateral movement.
+
+Log Source: Microsoft Sysmon
+Affected Host: WIN-SOC-LAB
+User Account: WIN-SOC-LAB\attacker
+Command Executed: powershell.exe -enc SQBmACgAJAB...
+
+Indicators of Compromise:
+- CommandLine contains `-enc` or `-encodedCommand`
+- Image ends with `powershell.exe`
+- Non-admin user launching PowerShell in hidden or obfuscated mode
+
+Detection Method:
+- Sigma rule written with `process_creation` as log source
+- Converted into Splunk SPL and Sentinel KQL for multi-platform detection
+- Used Uncoder.io for conversion validation
+
+False Positives:
+- Some administrators and automation scripts use encoded PowerShell legitimately
+- Requires contextual alert triage and threat intelligence enrichment
+
+Next Steps:
+- Alert SOC analyst team
+- Correlate with other event types like file drops, registry changes, or network beacons
+- Tune rule for environment-specific baselines
+
+Conclusion:
+This use case emphasizes the need to hunt for stealthy command execution patterns. Detection via Sigma allows us to apply rules across various SIEM tools for better coverage.
+
+Analyst:
+Vinay Raghavendra B V
