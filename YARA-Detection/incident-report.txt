@@ -1,0 +1,20 @@
+Incident Title: Detection of Obfuscated PowerShell Command Execution via YARA
+
+Date: 2025-06-25  
+Analyst: Vinay Raghavendra  
+MITRE Technique: T1027 – Obfuscated Files or Information
+
+Summary:
+A YARA rule was crafted to detect PowerShell commands that use base64-encoded payloads, a common obfuscation tactic. The rule targets the combination of "powershell", "-enc", and a regex-matching base64 string pattern.
+
+Steps:
+1. A malicious script `suspicious.ps1` was created containing a base64 PowerShell payload.
+2. A rule was written and saved as `detect_powershell.yar`.
+3. The rule was executed using the YARA CLI tool.
+4. Detection was successful, with no false positives against a clean `normal.txt` file.
+
+Outcome:
+Successfully identified obfuscated command execution attempts using YARA. Rule can be extended for broader incident response detection.
+
+Recommendation:
+Incorporate this YARA rule into automated scanning pipelines and SIEM platforms with YARA integration for real-time threat hunting.
