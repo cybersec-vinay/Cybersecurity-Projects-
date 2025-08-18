@@ -24,10 +24,10 @@ Set up a mini isolated lab environment with 3 virtual machines (Windows 10, Wind
 ## 📂 Screenshots
 
 - Ping Tests  
-(See `/Ping_Test_Screenshots/` folder)
+
 
 - Wireshark Capture  
-![Wireshark](Wireshark_Capture.png)
+
 
 ## 🚀 Skills Demonstrated
 - Network Configuration (Static IPs, Subnetting)
