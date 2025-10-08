@@ -58,20 +58,20 @@ INC001013 - Password Reset Request (Annabelle Coger)
 
 Technical Steps (Windows Server 2019 CLI):
 
-# Unlock user account (if locked)
+Unlock user account (if locked)
 net user Annabelle Coger /domain
 
-# Reset password
+Reset password
 dsmod user "CN=Annabelle Coger,OU=Sales,DC=lab,DC=local" -pwd NewPass@123
 
-# Force password change at next logon
+Force password change at next logon
 dsmod user "CN=Annabelle Coger,OU=Sales,DC=lab,DC=local" -mustchpwd yes
 
 
 Resolution Summary (ServiceNow Update):
 Account unlocked and password reset. User verified access successfully. Ticket closed.
 
-2️⃣ Permission Denied – Shared Folder Access
+## 2️⃣ Permission Denied – Shared Folder Access
 
 User Issue:
 
@@ -83,17 +83,17 @@ INC001017 - Shared Folder Access Denied (Annabelle Coger)
 
 Technical Steps (Windows Server 2019 CLI):
 
-# Check group membership
+Check group membership
 dsget user "CN=Annabelle Coger,OU=Sales,DC=lab,DC=local" -memberof
 
-# Add user to proper security group
+Add user to proper security group
 dsmod group "CN=SalesGroup,OU=Sales,DC=lab,DC=local" -addmbr "CN=Annabelle Coger,OU=Sales,DC=lab,DC=local"
 
 
 Resolution Summary (ServiceNow Update):
 Verified group permissions, added Annabelle Coger to SalesGroup, confirmed folder access restored. Ticket closed.
 
-3️⃣ No Internet Connectivity
+## 3️⃣ No Internet Connectivity
 
 User Issue:
 
@@ -105,16 +105,16 @@ INC001021 - Internet Connectivity Issue (Annabelle Coger)
 
 Technical Steps (Client & Server Side):
 
-# On Windows 10 Client
+On Windows 10 Client
 ipconfig /all
 ping 8.8.8.8
 ping google.com
 
-# If DNS issue → fix DNS
+If DNS issue → fix DNS
 netsh interface ip set dns "Wi-Fi" static 192.168.1.1
 ipconfig /flushdns
 
-# On Server (verify DHCP/DNS service)
+On Server (verify DHCP/DNS service)
 Get-Service | findstr DHCP
 Get-Service | findstr DNS
 
